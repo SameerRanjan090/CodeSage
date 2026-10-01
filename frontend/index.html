@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeSage — Local AI Developer Assistant</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/c.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="logo">
+            CS
+        </div>
+
+        <div>
+            <h1>CodeSage</h1>
+            <p>Local AI Developer Assistant</p>
+        </div>
+
+    </div>
+
+    <div class="local-badge">
+        <span class="dot"></span>
+        LOCAL · LLAMA 3.2
+    </div>
+
+</header>
+
+
+<main class="app-shell">
+
+    <aside class="sidebar">
+
+        <div class="side-title">
+            WORKSPACE
+        </div>
+
+        <button class="side-button active" id="singleModeBtn">
+            ⌘ Single File
+        </button>
+
+        <button class="side-button" id="projectModeBtn">
+            ▦ Project Analysis
+        </button>
+
+
+        <div class="privacy-card">
+
+            <div class="privacy-icon">
+                ◉
+            </div>
+
+            <strong>Your code stays local</strong>
+
+            <p>
+                CodeSage sends code only to Ollama
+                running on this computer.
+            </p>
+
+        </div>
+
+
+        <div class="side-title">
+            PROJECT FILES
+        </div>
+
+
+        <div id="fileList" class="file-list">
+
+            <span class="muted">
+                No project loaded
+            </span>
+
+        </div>
+
+
+        <button class="outline-button" id="folderBtn">
+            ＋ Add Project Folder
+        </button>
+
+        <input
+            id="folderInput"
+            type="file"
+            webkitdirectory
+            directory
+            multiple
+            hidden
+        >
+
+    </aside>
+
+
+
+    <section class="workspace">
+
+        <div class="workspace-head">
+
+            <div>
+
+                <span class="eyebrow">
+                    CODE EDITOR
+                </span>
+
+                <h2 id="editorTitle">
+                    Analyze a code file
+                </h2>
+
+            </div>
+
+
+            <div class="controls">
+
+                <select id="language">
+
+                    <option>Java</option>
+                    <option>Python</option>
+                    <option>JavaScript</option>
+                    <option>C++</option>
+                    <option>C</option>
+
+                </select>
+
+
+                <button
+                    class="ghost-button"
+                    id="copyCodeBtn"
+                >
+                    Copy
+                </button>
+
+
+                <button
+                    class="ghost-button"
+                    id="clearBtn"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="editor-wrap">
+
+            <div
+                class="line-numbers"
+                id="lineNumbers"
+            >
+                1
+            </div>
+
+
+            <div class="code-layer">
+
+                <pre id="highlightedCode"><code></code></pre>
+
+                <textarea
+                    id="codeInput"
+                    spellcheck="false"
+                    placeholder="// Paste your code here..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="action-bar">
+
+            <button
+                class="primary"
+                data-action="debug"
+            >
+                ⌁ Debug Code
+            </button>
+
+
+            <button data-action="explain">
+                ◎ Explain
+            </button>
+
+
+            <button data-action="fix">
+                ✦ Fix Code
+            </button>
+
+
+            <button data-action="refactor">
+                ◇ Refactor
+            </button>
+
+
+            <button
+                class="project-action"
+                data-action="project"
+            >
+                ▦ Analyze Project
+            </button>
+
+        </div>
+
+
+
+        <div class="result-head">
+
+            <div>
+
+                <span class="eyebrow">
+                    ANALYSIS
+                </span>
+
+                <h2>
+                    CodeSage Output
+                </h2>
+
+            </div>
+
+            <span
+                id="thinking"
+                class="status-text"
+            >
+                Ready
+            </span>
+
+        </div>
+
+
+
+        <div
+            id="result"
+            class="result-panel"
+        >
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    ⌘
+                </div>
+
+                <h3>
+                    Ready to analyze
+                </h3>
+
+                <p>
+                    Paste code and choose an action.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<footer>
+
+    <span>
+        CodeSage
+    </span>
+
+    <span>
+        Open-source · Privacy-first · Local AI
+    </span>
+
+    <span>
+        Ollama · Llama 3.2
+    </span>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
